@@ -9,7 +9,7 @@ module.exports = function(app) {
   let shouldReconnect = true;
 
   var plugin = {
-    id: "rec-bms-plugin",
+    id: "signalk-rec-bms",
     name: "REC BMS Plugin",
     description: "SignalK plugin for REC-BMS",
     schema: {
