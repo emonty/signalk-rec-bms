@@ -1,0 +1,24 @@
+{
+  "name": "signalk-rec-bms",
+  "version": "1.0.0",
+  "description": "SignalK plugin for REC-BMS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "signalk-node-server-plugin",
+    "signalk-category-hardware"
+  ],
+  "author": {
+    "name": "Oliver Fernander",
+    "email": "oliver@fernander.net"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.18.1"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
