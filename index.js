@@ -7,7 +7,7 @@ module.exports = function(app) {
   let ws;
   const initialReconnectInterval = 5000;
   let currentReconnectInterval = initialReconnectInterval;
-  const heartbeatInterval = 5000;
+  const heartbeatInterval = 10000;
   let pingInterval;
   let shouldReconnect = true;
   let heartbeatTimeout;
