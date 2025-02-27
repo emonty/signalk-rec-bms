@@ -5,9 +5,9 @@ const schema = require('./schema');
 
 module.exports = function(app) {
   let ws;
-  const initialReconnectInterval = 5000;
+  const initialReconnectInterval = 10000;
   let currentReconnectInterval = initialReconnectInterval;
-  const heartbeatInterval = 10000;
+  const heartbeatInterval = 15000;
   let pingInterval;
   let shouldReconnect = true;
   let heartbeatTimeout;
