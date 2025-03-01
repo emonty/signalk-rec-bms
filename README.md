@@ -1,5 +1,7 @@
 # signalk-rec-bms
 
+![alt text](https://github.com/ofernander/signalk-rec-bms/blob/main/resources/rec-sk.png)
+
 SignalK plugin for REC-BMS
 
 ## Requirements
