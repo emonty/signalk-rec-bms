@@ -20,7 +20,7 @@ module.exports = {
         websocketURL: {
           title: "WebSocket URL",
           type: "string",
-          default: "ws://192.168.88.10/ws"
+          default: "ws://WiFi_module_ip/ws"
         }
       }
     },
