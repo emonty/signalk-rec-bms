@@ -14,7 +14,7 @@ class BMSSystem {
       voltage: null,
       current: null,
       power: null,
-      soc: null,
+      stateOfCharge: null,
       cellVoltages: {},
       cellResistances: {},
       cellVoltageDifference: null,
@@ -38,7 +38,7 @@ class BMSSystem {
 
   cacheDomElements() {
     const metrics = [
-      'voltage', 'current', 'power', 'soc', 'cellVoltageDifference',
+      'voltage', 'current', 'power', 'stateOfCharge', 'cellVoltageDifference',
       'bmsTemperature', 'cellTemperature1', 'maxCellVoltage', 'minCellVoltage',
       'ampHourRemaining', 'ampHourUsed', 'capacity'
     ];
@@ -90,8 +90,11 @@ class BMSSystem {
     setValue(this.dom.metricElements.voltage, this.liveData.voltage, "V");
     setValue(this.dom.metricElements.current, this.liveData.current, "A");
     setValue(this.dom.metricElements.power, this.liveData.power, "W");
-    setValue(this.dom.metricElements.soc, this.liveData.soc, "%");
-    setValue(this.dom.metricElements.cellVoltageDifference, this.liveData.cellVoltageDifference, "V");
+    setValue(this.dom.metricElements.stateOfCharge, this.liveData.stateOfCharge, "%");
+    if (this.dom.metricElements.cellVoltageDifference) {
+      const v = this.liveData.cellVoltageDifference;
+      this.dom.metricElements.cellVoltageDifference.textContent = v !== null ? `${v.toFixed(4)}V` : "--";
+    }    
     setValue(this.dom.metricElements.bmsTemperature, this.liveData.bmsTemperature, "°C");
     setValue(this.dom.metricElements.cellTemperature1, this.liveData.cellTemperature1, "°C");
     setValue(this.dom.metricElements.maxCellVoltage, this.liveData.maxCellVoltage, "V");
