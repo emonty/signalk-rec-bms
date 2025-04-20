@@ -1,0 +1,125 @@
+:root {
+    --bg-color: #808080;
+    --panel-bg: #9d9d9d;
+    --header-bg: #9d9d9d;
+    --text-main: #000000;
+    --text-light: #ffffff;
+    --border-color: #000000;
+    --metric-box: #808080;
+    --nav-active: #d53535;
+    --cell-towers: #d53535;
+    --scale-color: #000000;
+    --grid-color: #000000;
+    --app-title: #d53535;
+    --header-height: 60px;
+    --settings-section-bg: #707070;
+  }
+  
+  html, body {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    position: relative;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  
+  .header {
+    background-color: var(--header-bg);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: var(--header-height);
+    box-sizing: border-box;
+  }
+  
+  .app-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 8px;
+    background-color: var(--app-title);
+    transform: translateX(17px);
+    text-align: left;
+    color: var(--text-light);
+  }
+  
+  .nav-menu {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-item {
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 3px;
+  }
+  
+  .nav-item.active {
+    background-color: var(--nav-active);
+    color: white;
+  }
+  
+  .main-container {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .stats-panel {
+    width: 250px;
+    text-align: center;
+    background-color: var(--panel-bg);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 5px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  .data-panel {
+    flex: 1;
+    background-color: var(--panel-bg);
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 5px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .content-view {
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow-y: auto;
+  }
+  
+  .content-view.active {
+    display: block;
+  }

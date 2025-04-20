@@ -1,12 +1,13 @@
 {
   "name": "signalk-rec-bms",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "SignalK plugin for REC-BMS",
-  "main": "index.js",
+  "main": "plugin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "signalk-webapp",
     "signalk-node-server-plugin",
     "signalk-category-hardware"
   ],
@@ -16,7 +17,9 @@
   },
   "license": "ISC",
   "dependencies": {
-    "ws": "^8.18.1"
+    "ws": "^8.18.1",
+    "serialport": "^13.0.0",
+    "crc": "^4.3.2"
   },
   "repository": {
     "type": "git",
@@ -24,5 +27,9 @@
   },
   "engines": {
     "node": ">=10"
+  },
+  "signalk": {
+    "appIcon": "./assets/icons/rec_ball-72x72.png",
+    "displayName": "SignalK-REC-BMS"
   }
 }

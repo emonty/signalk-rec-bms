@@ -1,0 +1,553 @@
+[
+  {
+    "tag": "IDN",
+    "command": "*IDN?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseIDNResponse",
+    "timeout": 100,
+    "expectedSubstring": "REC",
+    "description": "IDN? returns the device identification string",
+    "module": "array"
+  },
+  {
+    "tag": "LCD1",
+    "command": "LCD1?",
+    "expectedPackets": 2,
+    "payloadSizes": [2, 28],
+    "parser": "parseLCD1Response",
+    "timeout": 100,
+    "description": "LCD1? returns overall battery parameters (voltage, current, etc.)",
+    "module": "array"
+  },
+  {
+    "tag": "LCD3",
+    "command": "LCD3?",
+    "expectedPackets": 2,
+    "payloadSizes": [1, 8],
+    "parser": "parseLCD3Response",
+    "timeout": 100,
+    "description": "LCD3? returns cell-level data",
+    "module": "array"
+  },
+  {
+    "tag": "CELL",
+    "command": "CELL?",
+    "expectedPackets": 2,
+    "payloadSizes": [1, 16],
+    "parser": "parseCELLResponse",
+    "timeout": 100,
+    "description": "CELL? returns the number of BMS units and cell voltages",
+    "module": "array"
+  },
+  {
+    "tag": "PTEM",
+    "command": "PTEM?",
+    "expectedPackets": 2,
+    "payloadSizes": [1, 4],
+    "parser": "parsePTEMResponse",
+    "timeout": 100,
+    "description": "PTEM? returns the cell temperatures from the BMS",
+    "module": "array"
+  },
+  {
+    "tag": "RINT",
+    "command": "RINT?",
+    "expectedPackets": 2,
+    "payloadSizes": [1, 16],
+    "parser": "parseRINTResponse",
+    "timeout": 100,
+    "description": "RINT? returns internal cell resistances (2 packets: size + 4 floats)",
+    "module": "array"
+  },
+  {
+    "tag": "BTEM",
+    "command": "BTEM?",
+    "expectedPackets": 2,
+    "payloadSizes": [1, 4],
+    "parser": "parseBTEMResponse",
+    "timeout": 100,
+    "description": "BTEM? returns internal BMS board temperature",
+    "module": "array"
+  },
+  {
+    "tag": "ERRO",
+    "command": "ERRO?",
+    "expectedPackets": 2,
+    "payloadSizes": [1, 4],
+    "parser": "parseERROResponse",
+    "timeout": 100,
+    "description": "ERRO? returns a float value representing the BMS error status",
+    "module": "array"
+  },
+  {
+    "tag": "BVOL",
+    "command": "BVOL?",
+    "expectedPackets": 1,
+    "payloadSizes": [9],
+    "parser": "parseBVOLResponse",
+    "timeout": 100,
+    "description": "BVOL? returns balance end voltage",
+    "module": "volt"
+  },
+  {
+    "tag": "BMIN",
+    "command": "BMIN?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseBMINResponse",
+    "timeout": 100,
+    "description": "BMIN? returns balancing start voltage",
+    "module": "volt"
+  },
+  {
+    "tag": "CMAX",
+    "command": "CMAX?",
+    "expectedPackets": 1,
+    "payloadSizes": [9],
+    "parser": "parseCMAXResponse",
+    "timeout": 100,
+    "description": "CMAX? returns cell over-voltage switch-off",
+    "module": "volt"
+  },
+  {
+    "tag": "MAXH",
+    "command": "MAXH?",
+    "expectedPackets": 1,
+    "payloadSizes": [9],
+    "parser": "parseMAXHResponse",
+    "timeout": 100,
+    "description": "MAXH? returns over-voltage switch-off hysteresis per cell",
+    "module": "volt"
+  },
+  {
+    "tag": "CMIN",
+    "command": "CMIN?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseCMINResponse",
+    "timeout": 100,
+    "description": "CMIN? returns cell under-voltage protection switch-off",
+    "module": "volt"
+  },
+  {
+    "tag": "MINH",
+    "command": "MINH?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseMINHResponse",
+    "timeout": 100,
+    "description": "MINH? returns under-voltage switch-off hysteresis per cell",
+    "module": "volt"
+  },
+  {
+    "tag": "CHAR",
+    "command": "CHAR?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseCHARResponse",
+    "timeout": 100,
+    "description": "CHAR? returns cell end of charging voltage",
+    "module": "volt"
+  },
+  {
+    "tag": "CHIS",
+    "command": "CHIS?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseCHISResponse",
+    "timeout": 100,
+    "description": "CHIS? returns end of charging voltage hysteresis per cell",
+    "module": "volt"
+  },
+  {
+    "tag": "UBDI",
+    "command": "UBDI?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseUBDIResponse",
+    "timeout": 100,
+    "description": "UBDI? returns end of charging allowed cell voltage difference",
+    "module": "volt"
+  },
+  {
+    "tag": "CFVC",
+    "command": "CFVC?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseCFVCResponse",
+    "timeout": 100,
+    "description": "CFVC? returns maximum cell float voltage coefficient",
+    "module": "volt"
+  },
+  {
+    "tag": "RAZL",
+    "command": "RAZL?",
+    "expectedPackets": 1,
+    "payloadSizes": [9],
+    "parser": "parseRAZLResponse",
+    "timeout": 100,
+    "description": "RAZL? returns cells max difference",
+    "module": "volt"
+  },
+  {
+    "tag": "TMAX",
+    "command": "TMAX?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseTMAXResponse",
+    "timeout": 100,
+    "description": "TMAX? returns cell over temperature switch-off",
+    "module": "temp"
+  },
+  {
+    "tag": "TMIN",
+    "command": "TMIN?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseTMINResponse",
+    "timeout": 100,
+    "description": "TMIN? returns under-temperature charging disable",
+    "module": "temp"
+  },
+  {
+    "tag": "TBAL",
+    "command": "TBAL?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseTBALResponse",
+    "timeout": 100,
+    "description": "TBAL? returns BMS over-temperature switch-off",
+    "module": "temp"
+  },
+  {
+    "tag": "BMTH",
+    "command": "BMTH?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseBMTHResponse",
+    "timeout": 100,
+    "description": "BMTH? returns BMS over temperature switch-off hysteresis",
+    "module": "temp"
+  },
+  {
+    "tag": "IOFF",
+    "command": "IOFF?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseIOFFResponse",
+    "timeout": 100,
+    "description": "IOFF? returns current measurement zero offset",
+    "module": "cur"
+  },
+  {
+    "tag": "IOJA",
+    "command": "IOJA?",
+    "expectedPackets": 1,
+    "payloadSizes": [10],
+    "parser": "parseIOJAResponse",
+    "timeout": 100,
+    "description": "IOJA? returns voltage-to-current coefficient",
+    "module": "cur"
+  },
+  {
+    "tag": "CYCL",
+    "command": "CYCL?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCYCLResponse",
+    "timeout": 100,
+    "description": "CYCL? returns number of full battery pack cycles",
+    "module": "bat"
+  },
+  {
+    "tag": "CAPA",
+    "command": "CAPA?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCAPAResponse",
+    "timeout": 100,
+    "description": "CAPA? returns battery pack capacity in Ah",
+    "module": "bat"
+  },
+  {
+    "tag": "CHEM",
+    "command": "CHEM?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCHEMResponse",
+    "timeout": 100,
+    "description": "CHEM? returns Li-ion chemistry (1 to 5)",
+    "module": "bat"
+  },
+  {
+    "tag": "SOCH",
+    "command": "SOCH?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseSOCHResponse",
+    "timeout": 100,
+    "description": "SOCH? returns SOC end of charge hysteresis",
+    "module": "soc"
+  },
+  {
+    "tag": "SOCS",
+    "command": "SOCS?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseSOCSResponse",
+    "timeout": 100,
+    "description": "SOCS? returns SOC manual re-set",
+    "module": "soc"
+  },
+  {
+    "tag": "CHAC",
+    "command": "CHAC?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCHACResponse",
+    "timeout": 100,
+    "description": "CHAC? returns charge coefficient (0-5C)",
+    "module": "victron"
+  },
+  {
+    "tag": "DCHC",
+    "command": "DCHC?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseDCHCResponse",
+    "timeout": 100,
+    "description": "DCHC? returns discharge coefficient (0-5C)",
+    "module": "victron"
+  },
+  {
+    "tag": "STRN",
+    "command": "STRN?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseSTRNResponse",
+    "timeout": 100,
+    "description": "STRN? returns number of inverter devices on the bus (1-5)",
+    "module": "victron"
+  },
+  {
+    "tag": "MAXC",
+    "command": "MAXC?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseMAXCResponse",
+    "timeout": 100,
+    "description": "MAXC? returns maximum charge current per inverter device [A]",
+    "module": "victron"
+  },
+  {
+    "tag": "MAXD",
+    "command": "MAXD?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseMAXDResponse",
+    "timeout": 100,
+    "description": "MAXD? returns maximum discharge current per inverter device [A]",
+    "module": "victron"
+  },
+  {
+    "tag": "CLOW",
+    "command": "CLOW?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCLOWResponse",
+    "timeout": 100,
+    "description": "CLOW? returns cell under-voltage discharge protection [V]",
+    "module": "victron"
+  },
+  {
+    "tag": "ERRL",
+    "command": "ERRL?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseERRLResponse",
+    "timeout": 3,
+    "description": "ERRL? returns error log data",
+    "module": "erro"
+  },
+  {
+    "tag": "ERLD",
+    "command": "ERLD?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseERLDResponse",
+    "timeout": 100,
+    "description": "ERLD? returns or sets error log delete state",
+    "module": "erro"
+  },
+  {
+    "tag": "VMAX",
+    "command": "VMAX?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseVMAXResponse",
+    "timeout": 100,
+    "description": "VMAX? returns number of exceeded values of CMAX",
+    "module": "erro"
+  },
+  {
+    "tag": "VMIN",
+    "command": "VMIN?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseVMINResponse",
+    "timeout": 100,
+    "description": "VMIN? returns number of exceeded values of CMIN",
+    "module": "erro"
+  },
+  {
+    "tag": "RE1L",
+    "command": "RE1L?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseRE1Response",
+    "timeout": 1000,
+    "description": "RE1? returns Relay 1 voltage level [V]",
+    "module": "outputs"
+  },
+  {
+    "tag": "RE1H",
+    "command": "RE1H?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseRE1HResponse",
+    "timeout": 1000,
+    "description": "RE1H? returns Relay 1 voltage level hysteresis [-2.0 to 2.0 V]",
+    "module": "outputs"
+  },
+  {
+    "tag": "OP2L",
+    "command": "OP2L?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseOP2Response",
+    "timeout": 1000,
+    "description": "OP2? returns Optocoupler 2 voltage level [V]",
+    "module": "outputs"
+  },
+  {
+    "tag": "OP2H",
+    "command": "OP2H?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseOP2HResponse",
+    "timeout": 1000,
+    "description": "OP2H? returns Optocoupler 2 voltage level hysteresis [-2.0 to 2.0 V]",
+    "module": "outputs"
+  },
+  {
+    "tag": "CAL1",
+    "command": "CAL1?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCAL1Response",
+    "timeout": 1000,
+    "description": "CAL1? returns calibration offset for cell 1",
+    "module": "abms"
+  },
+  {
+    "tag": "CAL2",
+    "command": "CAL2?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCAL2Response",
+    "timeout": 1000,
+    "description": "CAL2? returns calibration offset for cell 2",
+    "module": "abms"
+  },
+  {
+    "tag": "CAL3",
+    "command": "CAL3?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCAL3Response",
+    "timeout": 1000,
+    "description": "CAL3? returns calibration offset for cell 3",
+    "module": "abms"
+  },
+  {
+    "tag": "CAL4",
+    "command": "CAL4?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseCAL4Response",
+    "timeout": 1000,
+    "description": "CAL4? returns calibration offset for cell 4",
+    "module": "abms"
+  },
+  {
+    "tag": "SERI",
+    "command": "SERI?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseSERIResponse",
+    "timeout": 1000,
+    "description": "SERI? returns ABMS serial number",
+    "module": "abms"
+  },
+  {
+    "tag": "SERI2",
+    "command": "SERI?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseSERIResponse",
+    "timeout": 1000,
+    "description": "SERI2? returns ABMS serial number (hidden duplicate)",
+    "module": "abms"
+  },
+  {
+    "tag": "SWVR",
+    "command": "SWVR?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseSWVRResponse",
+    "timeout": 1000,
+    "description": "SWVR? returns ABMS software version",
+    "module": "abms"
+  },
+  {
+    "tag": "HWVR",
+    "command": "HWVR?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseHWVRResponse",
+    "timeout": 1000,
+    "description": "HWVR? returns ABMS hardware version",
+    "module": "abms"
+  },
+  {
+    "tag": "TIME",
+    "command": "TIME?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseTIMEResponse",
+    "timeout": 1000,
+    "description": "TIME? returns ABMS time",
+    "module": "abms"
+  },
+  {
+    "tag": "DATE",
+    "command": "DATE?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseDATEResponse",
+    "timeout": 1000,
+    "description": "DATE? returns ABMS date",
+    "module": "abms"
+  },
+  {
+    "tag": "WCBI",
+    "command": "WCBI?",
+    "expectedPackets": 1,
+    "payloadSizes": [null],
+    "parser": "parseWCBIResponse",
+    "timeout": 1000,
+    "description": "WCBI? returns balancing cell number",
+    "module": "abms"
+  } 
+]

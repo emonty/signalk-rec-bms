@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignalK-REC-BMS</title>
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/towers.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <div class="header">
+    <div class="app-title">SignalK-REC-BMS</div>
+    <div class="nav-menu">
+      <div class="nav-item active" id="nav-status">Status</div>
+      <div class="nav-item" id="nav-settings">Settings</div>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="stats-panel">
+      <div class="metric-box">
+        <div class="metric-label">Capacity</div>
+        <div class="metric-value" id="capacity">--.-- Ah</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Amp Hours Remaining</div>
+        <div class="metric-value" id="ampHourRemaining">--.-- Ah</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Amp Hours Used</div>
+        <div class="metric-value" id="ampHourUsed">--.-- Ah</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">State of Charge</div>
+        <div class="metric-value" id="soc">-- %</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Pack Voltage</div>
+        <div class="metric-value" id="voltage">--.-- V</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Current</div>
+        <div class="metric-value" id="current">--.-- A</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Power</div>
+        <div class="metric-value" id="power">--.-- W</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Min Cell Voltage</div>
+        <div class="metric-value" id="minCellVoltage">--.-- V</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Max Cell Voltage</div>
+        <div class="metric-value" id="maxCellVoltage">--.-- V</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Cell Voltage Difference</div>
+        <div class="metric-value" id="cellVoltageDifference">--.-- V</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Battery Temperature</div>
+        <div class="metric-value" id="cellTemperature1">--.-- °C</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">BMS Temperature</div>
+        <div class="metric-value" id="bmsTemperature">--.-- °C</div>
+      </div>
+    </div>
+
+    <div class="data-panel">
+      <div id="status-view" class="content-view active">
+        <div id="cell-towers" class="towers-container"></div>
+      </div>
+      
+<div id="settings-view" class="content-view">
+  <div class="settings-container">
+    <h2 class="settings-title">BMS Settings</h2>
+    <div class="settings-section" id="settings-command-grid">
+    </div>
+    <div class="settings-section" style="margin-top: 25px;">
+      <h3>Manual BMS Command</h3>
+      <form id="command-form" class="settings-form-group">
+        <label for="command-input" class="settings-label">
+          Enter Command (e.g., <code>BVOL 3.25</code>)
+        </label>
+        <input
+          type="text"
+          id="command-input"
+          class="settings-input"
+          placeholder="Enter command like 'BVOL 3.25'"
+          required
+        />
+        <div class="settings-buttons">
+          <button type="submit" class="settings-button primary">Send Command</button>
+        </div>
+      </form>
+      <div
+        id="command-response"
+        class="settings-form-group settings-label"
+        style="margin-top: 10px;"
+      ></div>
+    </div>
+
+  </div>
+</div>
+
+
+
+  <div class="info-box">
+    <a href="https://github.com/ofernander/signalk-rec-bms" target="_blank">signalk-rec-bms on GitHub</a>
+  </div>
+
+  <script>
+    document.getElementById('nav-status').addEventListener('click', function() {
+      document.getElementById('status-view').classList.add('active');
+      document.getElementById('settings-view').classList.remove('active');
+      document.getElementById('nav-status').classList.add('active');
+      document.getElementById('nav-settings').classList.remove('active');
+    });
+
+      document.getElementById('nav-settings').addEventListener('click', function() {
+      document.getElementById('status-view').classList.remove('active');
+      document.getElementById('settings-view').classList.add('active');
+      document.getElementById('nav-settings').classList.add('active');
+      document.getElementById('nav-status').classList.remove('active');
+    });
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>
