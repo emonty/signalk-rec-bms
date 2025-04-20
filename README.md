@@ -28,7 +28,7 @@ Tested with the 4 cell ABMS model only
 
 ![alt text](https://github.com/ofernander/signalk-rec-bms/blob/main/public/assets/images/rs485.jpg)
 
-![alt text][(https://github.com/ofernander/signalk-rec-bms/blob/main/public/assets/images/bms_serial.png?raw=true)
+![alt text](https://github.com/ofernander/signalk-rec-bms/blob/main/public/assets/images/bms_serial.png)
 
 ## Dependencies
 
