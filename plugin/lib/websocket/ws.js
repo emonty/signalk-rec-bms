@@ -111,9 +111,8 @@ module.exports = function(app, publishDelta) {
     });
 
     ws.on('error', (error) => {
-      app.error(`[WEBSOCKET] WebSocket error: ${error.message}`);
       app.setPluginStatus(`Error: ${error.message} - ERROR`);
-      app.debug("[WEBSOCKET] WebSocket error occurred, terminating connection.");
+      app.debug(`[WEBSOCKET] WebSocket error: "${error.message}", terminating connection.`);
       clearInterval(pingInterval);
       if (ws) ws.terminate();
       if (shouldReconnect) {
