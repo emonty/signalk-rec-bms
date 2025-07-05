@@ -15,6 +15,7 @@ class BMSSystem {
       current: null,
       power: null,
       stateOfCharge: null,
+      stateOfHealth: null,
       cellVoltages: {},
       cellResistances: {},
       cellVoltageDifference: null,
@@ -38,11 +39,12 @@ class BMSSystem {
 
   cacheDomElements() {
     const metrics = [
-      'voltage', 'current', 'power', 'stateOfCharge', 'cellVoltageDifference',
-      'bmsTemperature', 'cellTemperature1', 'maxCellVoltage', 'minCellVoltage',
-      'ampHourRemaining', 'ampHourUsed', 'capacity'
+      'voltage', 'current', 'power', 'stateOfCharge', 'stateOfHealth',
+      'cellVoltageDifference', 'bmsTemperature', 'cellTemperature1',
+      'maxCellVoltage', 'minCellVoltage', 'ampHourRemaining',
+      'ampHourUsed', 'capacity'
     ];
-    
+
     metrics.forEach(metric => {
       this.dom.metricElements[metric] = document.getElementById(metric);
       if (!this.dom.metricElements[metric]) {
@@ -54,7 +56,7 @@ class BMSSystem {
   setupTabSwitching() {
     const statusTab = document.getElementById('nav-status');
     const settingsTab = document.getElementById('nav-settings');
-    
+
     if (!statusTab || !settingsTab) {
       console.warn("Tab elements not found");
       return;
@@ -68,7 +70,7 @@ class BMSSystem {
   switchView(view) {
     const statusView = document.getElementById('status-view');
     const settingsView = document.getElementById('settings-view');
-    
+
     if (view === 'status') {
       statusView?.classList.add('active');
       settingsView?.classList.remove('active');
@@ -90,11 +92,23 @@ class BMSSystem {
     setValue(this.dom.metricElements.voltage, this.liveData.voltage, "V");
     setValue(this.dom.metricElements.current, this.liveData.current, "A");
     setValue(this.dom.metricElements.power, this.liveData.power, "W");
-    setValue(this.dom.metricElements.stateOfCharge, this.liveData.stateOfCharge, "%");
+
+    setValue(
+      this.dom.metricElements.stateOfCharge,
+      this.liveData.stateOfCharge !== null ? this.liveData.stateOfCharge * 100 : null,
+      "%"
+    );
+    setValue(
+      this.dom.metricElements.stateOfHealth,
+      this.liveData.stateOfHealth !== null ? this.liveData.stateOfHealth * 100 : null,
+      "%"
+    );
+
     if (this.dom.metricElements.cellVoltageDifference) {
       const v = this.liveData.cellVoltageDifference;
       this.dom.metricElements.cellVoltageDifference.textContent = v !== null ? `${v.toFixed(4)}V` : "--";
-    }    
+    }
+
     setValue(this.dom.metricElements.bmsTemperature, this.liveData.bmsTemperature, "°C");
     setValue(this.dom.metricElements.cellTemperature1, this.liveData.cellTemperature1, "°C");
     setValue(this.dom.metricElements.maxCellVoltage, this.liveData.maxCellVoltage, "V");

@@ -2,6 +2,7 @@
 const WebSocket = require('ws');
 const status = require('./status');
 const settings = require('./settings');
+const derived = require('./derived');
 const schema = require('../schema');
 
 module.exports = function(app, publishDelta) {
@@ -84,6 +85,11 @@ module.exports = function(app, publishDelta) {
           }
         }
 
+        // Add derived values
+        const derivedValues = derived(parsedData, prefix) || [];
+        delta.updates[0].values.push(...derivedValues);
+
+        // Filter out null/undefined
         delta.updates[0].values = delta.updates[0].values.filter(item => item.value !== null && item.value !== undefined);
 
         if (delta.updates[0].values.length > 0) {
@@ -111,9 +117,8 @@ module.exports = function(app, publishDelta) {
     });
 
     ws.on('error', (error) => {
-      app.error(`[WEBSOCKET] WebSocket error: ${error.message}`);
       app.setPluginStatus(`Error: ${error.message} - ERROR`);
-      app.debug("[WEBSOCKET] WebSocket error occurred, terminating connection.");
+      app.debug(`[WEBSOCKET] WebSocket error: "${error.message}", terminating connection.`);
       clearInterval(pingInterval);
       if (ws) ws.terminate();
       if (shouldReconnect) {

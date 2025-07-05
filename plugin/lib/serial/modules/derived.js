@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = function Derived(app, sendDeltaCallback, config) {
   app.debug("[DERIVED] Module instantiated with config: " + JSON.stringify(config));
   let voltage, current, ampHourUsed, capacity;
@@ -11,13 +13,29 @@ module.exports = function Derived(app, sendDeltaCallback, config) {
     if ([voltage, current, ampHourUsed, capacity].every(v => typeof v === 'number')) {
       const power = voltage * current;
       const ahRemaining = capacity - ampHourUsed;
+
+      const values = [
+        { path: prefix + 'power',             value: power },
+        { path: prefix + 'ampHourRemaining', value: ahRemaining }
+      ];
+
+      if (current > 0 && ahRemaining < capacity) {
+        const missingAh = capacity - ahRemaining;
+        const timeToFull = (missingAh / current) * 3600;
+        values.push({ path: prefix + 'timeToFull', value: timeToFull });
+        values.push({ path: prefix + 'timeToEmpty', value: 0 });
+      } else if (current < 0 && ahRemaining > 0) {
+        const timeToEmpty = (ahRemaining / Math.abs(current)) * 3600;
+        values.push({ path: prefix + 'timeToFull', value: 0 });
+        values.push({ path: prefix + 'timeToEmpty', value: timeToEmpty });
+      } else {
+        // fallback when current is 0 or data is abnormal
+        values.push({ path: prefix + 'timeToFull', value: 0 });
+        values.push({ path: prefix + 'timeToEmpty', value: 0 });
+      }
+
       sendDeltaCallback({
-        updates: [{
-          values: [
-            { path: prefix + 'power',             value: power },
-            { path: prefix + 'ampHourRemaining', value: ahRemaining }
-          ]
-        }]
+        updates: [{ values }]
       });
     }
   }
@@ -56,7 +74,7 @@ module.exports = function Derived(app, sendDeltaCallback, config) {
   });
 
   function trySendCellDiff() {
-    const keys = Object.keys(cellVoltages).map(k => parseInt(k,10));
+    const keys = Object.keys(cellVoltages).map(k => parseInt(k, 10));
     if (keys.length === totalCells) {
       const vals = keys.map(i => cellVoltages[i]);
       const minV = Math.min(...vals);
@@ -68,6 +86,8 @@ module.exports = function Derived(app, sendDeltaCallback, config) {
           ]
         }]
       });
+    } else {
+      setTimeout(trySendCellDiff, 10);
     }
   }
 

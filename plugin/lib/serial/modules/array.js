@@ -35,8 +35,8 @@ function parseLCD1Response(input) {
       current:     packet.readFloatLE(12),
       temperature: packet.readFloatLE(16),
       packVoltage: packet.readFloatLE(20),
-      soc:         packet.readFloatLE(24) * 100,
-      soh:         packet.readFloatLE(28) * 100
+      soc:         packet.readFloatLE(24),
+      soh:         packet.readFloatLE(28)
     }
   };
   return result;

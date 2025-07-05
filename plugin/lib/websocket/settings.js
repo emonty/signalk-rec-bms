@@ -8,11 +8,6 @@ module.exports = function(parsedData, prefix, config) {
   const settings = parsedData;
   const values = []; 
 
-  // Derived data - NOT FROM BMS
-  const AhR = (parsedData.capa !== undefined && parsedData.Ah !== undefined)
-    ? parsedData.capa - parsedData.Ah
-    : null;
-  values.push({ path: `${prefix}.ampHourRemaining`, value: AhR });
   // Data from WiFi module WebSocket under SETTINGS message 
   values.push({ path: `${prefix}.address`, value: parsedData.addr });
   values.push({ path: `${prefix}.ampHourUsed`, value: parsedData.Ah });

@@ -23,15 +23,10 @@ module.exports = function(parsedData, prefix, config) {
     return null;
   }
 
-  // Derived data - NOT FROM BMS
-  const power = (master.vbat !== undefined && master.ibat !== undefined)
-    ? master.vbat * master.ibat
-    : null;
-  values.push({ path: `${prefix}.power`, value: power });
   // Data from WiFi module WebSocket under SETTINGS message 
   values.push({ path: `${prefix}.date`, value: master.date });
   values.push({ path: `${prefix}.time`, value: master.time });
-  values.push({ path: `${prefix}.cellVoltageDifference`, value: master.maxcell - master.mincell });
+  //values.push({ path: `${prefix}.cellVoltageDifference`, value: master.maxcell - master.mincell });
   values.push({ path: `${prefix}.current`, value: master.ibat });
   values.push({ path: `${prefix}.errorAddress`, value: master.erro.addr });
   values.push({ path: `${prefix}.errorConnectionState`, value: master.erro.con_st });
@@ -42,7 +37,7 @@ module.exports = function(parsedData, prefix, config) {
   values.push({ path: `${prefix}.minCellVoltage`, value: master.mincell });
   values.push({ path: `${prefix}.stateOfCharge`, value: master.soc });
   values.push({ path: `${prefix}.stateOfHealth`, value: master.soh });
-  values.push({ path: `${prefix}.timeRemaining`, value: extractMinutes(master.time_remaining) });
+  //values.push({ path: `${prefix}.timeRemaining`, value: extractMinutes(master.time_remaining) });
   values.push({ path: `${prefix}.voltage`, value: master.vbat });
   values.push({ path: `${prefix}.bmsTemperature`, value: slave.temp_bms });
   values.push({ path: `${prefix}.slaveAddress`, value: slave.address });
