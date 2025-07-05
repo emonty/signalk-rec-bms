@@ -26,9 +26,9 @@ Tested with the 4 cell ABMS model only
 
 - RS485 to USB adapter with 3v output. The REC-BMS serial chip is not powered internally and you must supply 3v to power it. 
 
-![alt text](https://github.com/ofernander/signalk-rec-bms/blob/public/assets/images/rs485.jpg)
+![alt text](https://raw.githubusercontent.com/ofernander/signalk-rec-bms/refs/heads/main/public/assets/images/rs485.jpg)
 
-![alt text](https://github.com/ofernander/signalk-rec-bms/blob/public/assets/images/bms_serial.png)
+![alt text](https://raw.githubusercontent.com/ofernander/signalk-rec-bms/refs/heads/main/public/assets/images/bms_serial.png)
 
 ## Dependencies
 
