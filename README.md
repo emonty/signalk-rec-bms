@@ -1,6 +1,6 @@
 # signalk-rec-bms
 
-![alt text]([https://github.com/ofernander/signalk-rec-bms/blob/public/assets/images/rec-sk.png](https://github.com/ofernander/signalk-rec-bms/blob/main/public/assets/images/rec-sk.png))
+![alt text](https://raw.githubusercontent.com/ofernander/signalk-rec-bms/refs/heads/main/public/assets/images/rec-sk.png)
 
 ## Features
 
